@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Izuki</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="header_links">
+        <ul class="nav_links">
+          <li class="nav_link"><a href="#">Project Me</a></li>
+          <li class="nav_link"><a href="#">src_page</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section class="main">
+    <img src="{{ url_for('static', filename='imgs/image.png') }}" alt="avatar" class="avatar">
+
+    <h1>ZinMoiChoi</h1>
+    <p id="typing-text"></p> <!-- hiệu ứng typing -->
+
+    <ul class="social">
+  <!-- YouTube -->
+  <li><a href="https://youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+
+  <!-- Facebook -->
+  <li><a href="https://facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+
+  <!-- Discord -->
+  <li><a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a></li>
+
+  <!-- Roblox -->
+  <li><a href="https://www.roblox.com/" target="_blank"><i class="fa-solid fa-gamepad"></i></a></li>
+</ul>
+  </section>
+
+  <!-- Script hiệu ứng typing -->
+  <script>
+    const textElement = document.getElementById("typing-text");
+    const text = "Đang học code web và hơn thế nữa";
+    let i = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      if (!isDeleting) {
+        textElement.textContent = text.substring(0, i + 1);
+        i++;
+        if (i === text.length) {
+          setTimeout(() => {
+            textElement.style.opacity = 0;
+            setTimeout(() => { isDeleting = true; }, 1000);
+          }, 1500);
+        }
+      } else {
+        textElement.textContent = text.substring(0, i - 1);
+        i--;
+        if (i === 0) {
+          isDeleting = false;
+          textElement.style.opacity = 1;
+        }
+      }
+      setTimeout(typeEffect, isDeleting ? 50 : 100);
+    }
+    typeEffect();
+  </script>
+</body>
+</html>
